@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ContextBridge</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="glass-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="logo-area">
+        <img src="icons/icon128.png" alt="Logo" class="logo-img">
+        <div class="brand">
+          <h1>ContextBridge</h1>
+          <p>AI Context Switcher</p>
+        </div>
+      </div>
+      <button id="settings-toggle-btn" class="icon-btn" title="Settings">⚙️</button>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+      
+      <!-- DETECTED STATE -->
+      <section id="detected-panel" class="panel hidden">
+        <div class="status-badge" id="platform-badge">
+          <span class="pulse-dot"></span>
+          <span id="detected-platform-text">Detected ChatGPT</span>
+        </div>
+        
+        <div class="chat-details-card">
+          <h2 id="chat-title">Conversation Title</h2>
+          <div class="meta-row">
+            <span id="message-count-badge">0 turns</span>
+            <span id="char-count-badge">0 chars</span>
+          </div>
+        </div>
+
+        <!-- Context Mode Selection -->
+        <div class="mode-container">
+          <span class="mode-title">Context Mode</span>
+          <div class="segment-control">
+            <button class="segment-btn active" data-mode="full">Full</button>
+            <button class="segment-btn" data-mode="compact">Compact</button>
+            <button class="segment-btn" data-mode="ai">AI Summary</button>
+          </div>
+        </div>
+
+        <!-- Local AI Status Card -->
+        <div id="ai-status-box" class="ai-status-box hidden">
+          <span class="ai-icon">✨</span>
+          <span id="ai-status-text">Detecting Chrome Local AI...</span>
+        </div>
+
+        <button id="copy-prompt-btn" class="primary-btn pulse-glow">
+          <span class="btn-icon">📋</span>
+          <span class="btn-text">Copy Continuation Prompt</span>
+        </button>
+
+        <!-- Premium Features Row -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 8px;">
+          <button id="export-state-btn" class="secondary-btn" title="Export conversation as structured state file">
+            <span>💾</span> Export State File
+          </button>
+          <button id="one-click-resume-btn" class="primary-btn" title="One-click auto-inject to default platform">
+            <span>🚀</span> One-Click Resume
+          </button>
+        </div>
+
+        <!-- Message Selection Accordion -->
+        <div class="accordion">
+          <button class="accordion-trigger" id="outline-trigger">
+            <span>Select Chat History</span>
+            <span class="arrow">▼</span>
+          </button>
+          
+          <div class="accordion-content" id="outline-content">
+            <div class="filter-bar">
+              <input type="text" id="turn-search" placeholder="Search turns...">
+              <div class="select-all-wrapper">
+                <input type="checkbox" id="select-all-turns" checked>
+                <label for="select-all-turns" id="select-all-label">Select All</label>
+              </div>
+            </div>
+            <div class="turns-list" id="turns-container">
+              <!-- Turns will be populated dynamically -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Target switching platforms -->
+        <div class="target-section">
+          <h3>Switch & Continue In:</h3>
+          <div class="target-grid">
+            <button class="target-btn chatgpt" data-url="https://chatgpt.com">
+              <span class="target-logo">💬</span> ChatGPT
+            </button>
+            <button class="target-btn claude" data-url="https://claude.ai">
+              <span class="target-logo">🎭</span> Claude
+            </button>
+            <button class="target-btn gemini" data-url="https://gemini.google.com">
+              <span class="target-logo">✨</span> Gemini
+            </button>
+            <button class="target-btn copilot" data-url="https://copilot.microsoft.com">
+              <span class="target-logo">🌀</span> Copilot
+            </button>
+            <button class="target-btn grok" data-url="https://grok.com">
+              <span class="target-logo">𝕏</span> Grok
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- NOT DETECTED STATE -->
+      <section id="empty-panel" class="panel">
+        <div class="empty-state-card">
+          <div class="empty-icon">🌉</div>
+          <h2>Bridge Your Conversations</h2>
+          <p>Navigate to ChatGPT, Claude, Gemini, Copilot, or Grok to capture and transfer your context.</p>
+        </div>
+
+        <div class="launch-section">
+          <h3>Launch AI Platforms:</h3>
+          <div class="launch-grid">
+            <a href="https://chatgpt.com" target="_blank" class="launch-btn chatgpt">
+              <span class="btn-icon">💬</span> ChatGPT
+            </a>
+            <a href="https://claude.ai" target="_blank" class="launch-btn claude">
+              <span class="btn-icon">🎭</span> Claude
+            </a>
+            <a href="https://gemini.google.com" target="_blank" class="launch-btn gemini">
+              <span class="btn-icon">✨</span> Gemini
+            </a>
+            <a href="https://copilot.microsoft.com" target="_blank" class="launch-btn copilot">
+              <span class="btn-icon">🌀</span> Copilot
+            </a>
+            <a href="https://grok.com" target="_blank" class="launch-btn grok">
+              <span class="btn-icon">𝕏</span> Grok
+            </a>
+          </div>
+        </div>
+
+        <div class="manual-accordion">
+          <button class="accordion-trigger" id="manual-trigger">
+            <span>Manual Text Capture (Fallback)</span>
+            <span class="arrow">▼</span>
+          </button>
+          <div class="accordion-content hidden" id="manual-content">
+            <textarea id="manual-input" placeholder="Paste dialogue or text context here to wrap it in a continuation prompt..."></textarea>
+            <button id="copy-manual-btn" class="primary-btn">
+              <span>📋</span> Copy Wrapped Text
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- SETTINGS PANEL (Slide-over drawer) -->
+      <section id="settings-panel" class="settings-drawer hidden">
+        <div class="drawer-header">
+          <h2>Settings</h2>
+          <button id="settings-close-btn" class="icon-btn">✕</button>
+        </div>
+        <div class="drawer-body">
+          <div class="setting-group">
+            <label for="preamble-input">Continuation Prompt Preamble</label>
+            <p class="setting-desc">Instructions telling the receiving AI how to absorb the transcript and resume.</p>
+            <textarea id="preamble-input"></textarea>
+          </div>
+          
+          <div class="setting-group">
+            <label for="default-target">Default Target AI</label>
+            <p class="setting-desc">Platform opened automatically when clicking copy.</p>
+            <select id="default-target">
+              <option value="none">None (Choose on copy)</option>
+              <option value="chatgpt">ChatGPT</option>
+              <option value="claude">Claude</option>
+              <option value="gemini">Gemini</option>
+              <option value="copilot">Copilot</option>
+              <option value="grok">Grok</option>
+            </select>
+          </div>
+
+          <!-- Premium Feature Toggles -->
+          <div class="setting-group">
+            <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+              <input type="checkbox" id="auto-send-toggle" />
+              <span>🚀 One-Click Auto-Send</span>
+            </label>
+            <p class="setting-desc">Automatically send the prompt after injecting it to the target platform.</p>
+          </div>
+
+          <div class="setting-group">
+            <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+              <input type="checkbox" id="auto-compress-toggle" checked />
+              <span>🗜️ Smart Auto-Compress</span>
+            </label>
+            <p class="setting-desc">Automatically use Compact or AI mode for conversations with 10+ turns.</p>
+          </div>
+
+          <div class="setting-group">
+            <label for="compression-mode">Default Compression Mode</label>
+            <p class="setting-desc">Mode to use for conversations with 10+ turns.</p>
+            <select id="compression-mode">
+              <option value="compact">Compact (preserves code & recent context)</option>
+              <option value="ai">AI Summary (if Gemini Nano available)</option>
+              <option value="full">Full (no compression)</option>
+            </select>
+          </div>
+
+          <div class="drawer-actions">
+            <button id="save-settings-btn" class="primary-btn">Save Settings</button>
+            <button id="reset-settings-btn" class="secondary-btn">Reset Defaults</button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast hidden">Copied to clipboard!</div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>

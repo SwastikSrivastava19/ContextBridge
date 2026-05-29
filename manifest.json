@@ -1,0 +1,58 @@
+{
+  "manifest_version": 3,
+  "name": "ContextBridge",
+  "version": "1.1.0",
+  "description": "Bridge conversation contexts between ChatGPT, Claude, Gemini, Copilot, and Grok.",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage",
+    "clipboardRead",
+    "clipboardWrite"
+  ],
+  "host_permissions": [
+    "*://chat.openai.com/*",
+    "*://chatgpt.com/*",
+    "*://claude.ai/*",
+    "*://gemini.google.com/*",
+    "*://*.copilot.microsoft.com/*",
+    "*://copilot.microsoft.com/*",
+    "*://grok.com/*"
+  ],
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "popup/icons/icon128.png",
+      "48": "popup/icons/icon128.png",
+      "128": "popup/icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "popup/icons/icon128.png",
+    "48": "popup/icons/icon128.png",
+    "128": "popup/icons/icon128.png"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://chat.openai.com/*",
+        "*://chatgpt.com/*",
+        "*://claude.ai/*",
+        "*://gemini.google.com/*",
+        "*://*.copilot.microsoft.com/*",
+        "*://copilot.microsoft.com/*",
+        "*://grok.com/*"
+      ],
+      "js": [
+        "content/context-condenser.js",
+        "content/framework-injector.js",
+        "content/injector.js",
+        "content/overlay.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ]
+}
