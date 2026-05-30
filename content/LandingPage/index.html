@@ -23,6 +23,19 @@
       --muted2: #8888a0;
     }
 
+    :root.light {
+      --bg: #f4f4f6;
+      --surface: #ffffff;
+      --surface2: #ebebef;
+      --border: rgba(0,0,0,0.08);
+      --border2: rgba(0,0,0,0.14);
+      --accent: #444458;
+      --accent2: #666678;
+      --text: #111118;
+      --muted: #888898;
+      --muted2: #555568;
+    }
+
     html { scroll-behavior: smooth; }
 
     body {
@@ -33,7 +46,6 @@
       overflow-x: hidden;
     }
 
-    /* ── Noise texture overlay ── */
     body::before {
       content: '';
       position: fixed;
@@ -43,7 +55,6 @@
       z-index: 0;
     }
 
-    /* ── Nav ── */
     nav {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -111,7 +122,6 @@
 
     .nav-cta:hover { opacity: 0.88; color: #fff !important; }
 
-    /* ── Hero ── */
     .hero {
       position: relative;
       min-height: 100vh;
@@ -124,7 +134,6 @@
       overflow: hidden;
     }
 
-    /* Radial glow bg */
     .hero::after {
       content: '';
       position: absolute;
@@ -208,7 +217,6 @@
       font-weight: 700;
       text-decoration: none;
       transition: transform 0.2s, opacity 0.2s;
-      border: none;
       cursor: pointer;
     }
 
@@ -232,7 +240,6 @@
 
     .btn-secondary:hover { border-color: #b0b0c4; color: #b0b0c4; }
 
-    /* ── Supported AIs strip ── */
     .ai-strip {
       margin-top: 64px;
       display: flex;
@@ -270,22 +277,11 @@
       color: var(--muted2);
     }
 
-    .ai-chip-dot {
-      width: 7px; height: 7px;
-      border-radius: 50%;
-    }
+    .ai-chip-dot { width: 7px; height: 7px; border-radius: 50%; }
 
-    /* ── Section base ── */
-    section {
-      position: relative;
-      z-index: 1;
-    }
+    section { position: relative; z-index: 1; }
 
-    .container {
-      max-width: 1080px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
 
     .section-label {
       font-size: 11px;
@@ -311,17 +307,9 @@
       line-height: 1.7;
     }
 
-    /* ── How it works ── */
-    .how {
-      padding: 100px 0;
-      border-top: 1px solid var(--border);
-    }
+    .how { padding: 100px 0; border-top: 1px solid var(--border); }
 
-    .how-header {
-      text-align: center;
-      margin-bottom: 64px;
-    }
-
+    .how-header { text-align: center; margin-bottom: 64px; }
     .how-header .section-sub { margin: 0 auto; }
 
     .steps {
@@ -333,11 +321,7 @@
       overflow: hidden;
     }
 
-    .step {
-      background: var(--surface);
-      padding: 36px 32px;
-      position: relative;
-    }
+    .step { background: var(--surface); padding: 36px 32px; position: relative; }
 
     .step-num {
       font-size: 11px;
@@ -355,22 +339,12 @@
       margin-bottom: 20px;
     }
 
-    .step-icon.purple { background: rgba(180,180,200,0.1); }
-    .step-icon.pink { background: rgba(160,160,180,0.1); }
-    .step-icon.green { background: rgba(74,222,128,0.1); }
+    .step-icon.s1 { background: rgba(180,180,200,0.1); }
+    .step-icon.s2 { background: rgba(160,160,180,0.1); }
+    .step-icon.s3 { background: rgba(74,222,128,0.1); }
 
-    .step h3 {
-      font-size: 18px;
-      font-weight: 700;
-      margin-bottom: 10px;
-      letter-spacing: -0.01em;
-    }
-
-    .step p {
-      font-size: 14px;
-      color: var(--muted2);
-      line-height: 1.7;
-    }
+    .step h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; letter-spacing: -0.01em; }
+    .step p { font-size: 14px; color: var(--muted2); line-height: 1.7; }
 
     .step-arrow {
       position: absolute;
@@ -386,11 +360,7 @@
       z-index: 2;
     }
 
-    /* ── Features ── */
-    .features {
-      padding: 100px 0;
-      border-top: 1px solid var(--border);
-    }
+    .features { padding: 100px 0; border-top: 1px solid var(--border); }
 
     .features-grid {
       display: grid;
@@ -408,29 +378,11 @@
     }
 
     .feature-card:hover { border-color: var(--border2); }
+    .feature-icon { font-size: 24px; margin-bottom: 16px; }
+    .feature-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+    .feature-card p { font-size: 13px; color: var(--muted2); line-height: 1.7; }
 
-    .feature-icon {
-      font-size: 24px;
-      margin-bottom: 16px;
-    }
-
-    .feature-card h3 {
-      font-size: 16px;
-      font-weight: 700;
-      margin-bottom: 8px;
-    }
-
-    .feature-card p {
-      font-size: 13px;
-      color: var(--muted2);
-      line-height: 1.7;
-    }
-
-    /* ── Demo visual ── */
-    .demo {
-      padding: 100px 0;
-      border-top: 1px solid var(--border);
-    }
+    .demo { padding: 100px 0; border-top: 1px solid var(--border); }
 
     .demo-inner {
       display: grid;
@@ -497,7 +449,7 @@
       width: 100%;
       padding: 11px;
       background: linear-gradient(135deg, #38383e, #252530);
-      border: none;
+      border: 1px solid rgba(255,255,255,0.1);
       border-radius: 10px;
       color: #fff;
       font-family: 'Outfit', sans-serif;
@@ -519,6 +471,7 @@
 
     .popup-success .s-title { color: #4ade80; font-weight: 500; margin-bottom: 4px; font-size: 11px; }
     .popup-success .s-body { line-height: 1.6; }
+
     .popup-count {
       display: inline-flex;
       align-items: center;
@@ -532,9 +485,7 @@
       margin-top: 8px;
     }
 
-    .ai-links-row {
-      display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px;
-    }
+    .ai-links-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
 
     .ai-link-chip {
       padding: 4px 10px;
@@ -545,7 +496,6 @@
       color: var(--muted);
     }
 
-    /* ── CTA section ── */
     .cta-section {
       padding: 120px 0;
       border-top: 1px solid var(--border);
@@ -560,7 +510,7 @@
       bottom: -100px; left: 50%;
       transform: translateX(-50%);
       width: 600px; height: 400px;
-      background: radial-gradient(ellipse, rgba(180,180,200,0.08) 0%, transparent 70%);
+      background: radial-gradient(ellipse, rgba(180,180,200,0.06) 0%, transparent 70%);
       pointer-events: none;
     }
 
@@ -573,41 +523,82 @@
       margin-bottom: 16px;
     }
 
-    .cta-section p {
-      font-size: 16px;
-      color: var(--muted2);
-      margin-bottom: 36px;
-    }
+    .cta-section p { font-size: 16px; color: var(--muted2); margin-bottom: 36px; }
 
-    /* ── Footer ── */
     footer {
       border-top: 1px solid var(--border);
       padding: 24px 40px;
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: center;
       font-size: 12px;
       font-family: 'DM Mono', monospace;
       color: var(--muted);
     }
 
-    footer a { color: var(--muted); text-decoration: none; }
-    footer a:hover { color: var(--text); }
+    /* ── Theme Toggle ── */
+    .theme-toggle {
+      width: 36px; height: 36px;
+      border-radius: 8px;
+      border: 1px solid var(--border2);
+      background: var(--surface);
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px;
+      transition: border-color 0.2s, background 0.2s, transform 0.15s;
+      flex-shrink: 0;
+    }
 
-    /* ── Responsive ── */
+    .theme-toggle:hover {
+      border-color: var(--accent);
+      transform: rotate(15deg);
+    }
+
+    /* Light mode overrides */
+    :root.light nav {
+      background: rgba(244,244,246,0.92);
+    }
+
+    :root.light .hero::after {
+      background: radial-gradient(ellipse, rgba(100,100,130,0.06) 0%, transparent 70%);
+    }
+
+    :root.light h1 .gradient {
+      background: linear-gradient(135deg, #111118 0%, #666678 60%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    :root.light .hero-badge-dot {
+      background: #666688;
+      box-shadow: 0 0 6px #666688;
+    }
+
+    :root.light .nav-logo-icon,
+    :root.light .popup-logo,
+    :root.light .popup-btn,
+    :root.light .nav-cta {
+      background: linear-gradient(135deg, #2a2a36, #111118);
+    }
+
+    :root.light .btn-primary {
+      background: linear-gradient(135deg, #2a2a36 0%, #111118 100%);
+    }
+
+    :root.light body::before { opacity: 0.015; }
+
     @media (max-width: 768px) {
       nav { padding: 16px 20px; }
       .nav-links { display: none; }
       .steps { grid-template-columns: 1fr; }
       .step-arrow { display: none; }
       .demo-inner { grid-template-columns: 1fr; }
-      footer { flex-direction: column; gap: 8px; text-align: center; }
     }
   </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
   <a class="nav-logo" href="#">
     <div class="nav-logo-icon">⇄</div>
@@ -618,33 +609,27 @@
     <li><a href="#features">Features</a></li>
     <li><a href="#download" class="nav-cta">Download</a></li>
   </ul>
+  <button class="theme-toggle" id="themeToggle" title="Toggle theme">
+    <span class="theme-icon">☀️</span>
+  </button>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
   <div class="hero-badge">
     <span class="hero-badge-dot"></span>
     Free Chrome Extension · v1.0
   </div>
-
   <h1>
     Switch AIs.<br />
     <span class="gradient">Keep your context.</span>
   </h1>
-
   <p class="hero-sub">
     Hit an AI's limit mid-conversation? ContextBridge captures your full chat in one click and prepares a ready-made prompt to continue seamlessly on any other AI.
   </p>
-
   <div class="hero-actions">
-    <a href="#download" class="btn-primary">
-      ↓ &nbsp;Download Extension
-    </a>
-    <a href="#how" class="btn-secondary">
-      See how it works →
-    </a>
+    <a href="#download" class="btn-primary">↓ &nbsp;Download Extension</a>
+    <a href="#how" class="btn-secondary">See how it works →</a>
   </div>
-
   <div class="ai-strip">
     <p>Works with</p>
     <div class="ai-logos">
@@ -657,7 +642,6 @@
   </div>
 </section>
 
-<!-- HOW IT WORKS -->
 <section class="how" id="how">
   <div class="container">
     <div class="how-header">
@@ -665,27 +649,24 @@
       <h2 class="section-title">Three steps. Zero friction.</h2>
       <p class="section-sub">No accounts, no servers, no data leaving your browser. It's all local.</p>
     </div>
-
     <div class="steps">
       <div class="step">
         <p class="step-num">01</p>
-        <div class="step-icon purple">💬</div>
+        <div class="step-icon s1">💬</div>
         <h3>Hit the limit</h3>
         <p>You're deep in a conversation on any AI. The limit hits and you need to switch.</p>
         <div class="step-arrow">→</div>
       </div>
-
       <div class="step">
         <p class="step-num">02</p>
-        <div class="step-icon pink">⇄</div>
+        <div class="step-icon s2">⇄</div>
         <h3>Click & capture</h3>
         <p>Open ContextBridge. One click captures the full conversation and copies a continuation prompt to your clipboard.</p>
         <div class="step-arrow">→</div>
       </div>
-
       <div class="step">
         <p class="step-num">03</p>
-        <div class="step-icon green">✓</div>
+        <div class="step-icon s3">✓</div>
         <h3>Paste & continue</h3>
         <p>Open any other AI, paste the prompt, and continue exactly where you left off. The new AI has full context.</p>
       </div>
@@ -693,7 +674,6 @@
   </div>
 </section>
 
-<!-- DEMO + FEATURES -->
 <section class="demo" id="demo">
   <div class="container">
     <div class="demo-inner">
@@ -703,8 +683,6 @@
         <p class="section-sub" style="margin-bottom: 32px;">The extension popup sits right in your browser toolbar. Detect, capture, copy — done in under 3 seconds.</p>
         <a href="#download" class="btn-primary" style="width: fit-content;">Get it free →</a>
       </div>
-
-      <!-- Popup mockup -->
       <div class="demo-popup">
         <div class="popup-header">
           <div class="popup-logo">⇄</div>
@@ -713,14 +691,11 @@
             <div class="popup-sub">Never lose your conversation</div>
           </div>
         </div>
-
         <div class="popup-badge">
           <div class="popup-badge-dot"></div>
           <div class="popup-badge-text">Detected: <span>ChatGPT</span></div>
         </div>
-
         <button class="popup-btn">Capture &amp; Copy Context</button>
-
         <div class="popup-success">
           <div class="s-title">✓ CONTEXT CAPTURED</div>
           <div class="s-body">Prompt copied to clipboard from ChatGPT.</div>
@@ -737,43 +712,36 @@
   </div>
 </section>
 
-<!-- FEATURES -->
 <section class="features" id="features">
   <div class="container">
     <p class="section-label">Features</p>
     <h2 class="section-title">Everything you need.<br/>Nothing you don't.</h2>
-
     <div class="features-grid">
       <div class="feature-card">
         <div class="feature-icon">🔍</div>
         <h3>Auto platform detection</h3>
         <p>Opens on ChatGPT? Claude? Gemini? ContextBridge detects the platform automatically and scrapes the right way.</p>
       </div>
-
       <div class="feature-card">
         <div class="feature-icon">📋</div>
         <h3>One-click clipboard copy</h3>
         <p>The full conversation gets packaged into a smart continuation prompt and copied to your clipboard instantly.</p>
       </div>
-
       <div class="feature-card">
         <div class="feature-icon">⇄</div>
         <h3>Works across all major AIs</h3>
         <p>ChatGPT, Claude, Gemini, Microsoft Copilot, and Grok — switch in any direction, any time.</p>
       </div>
-
       <div class="feature-card">
         <div class="feature-icon">🔒</div>
         <h3>100% local & private</h3>
         <p>No servers, no accounts, no data collection. Everything runs in your browser. Your conversations stay yours.</p>
       </div>
-
       <div class="feature-card">
         <div class="feature-icon">⚡</div>
         <h3>Instant — under 3 seconds</h3>
         <p>From hitting the limit to being ready to paste in a new AI — the whole process takes less than 3 seconds.</p>
       </div>
-
       <div class="feature-card">
         <div class="feature-icon">🎯</div>
         <h3>Smart prompt format</h3>
@@ -783,18 +751,15 @@
   </div>
 </section>
 
-<!-- DOWNLOAD CTA -->
 <section class="cta-section" id="download">
   <div class="container">
     <p class="section-label">Get started</p>
     <h2>Download ContextBridge</h2>
     <p>Free. No account needed. Works in Chrome and any Chromium browser.</p>
-
     <div style="display: flex; flex-direction: column; align-items: center; gap: 16px;">
       <a href="https://github.com/SwastikSrivastava19/ContextBridge/archive/refs/tags/v1.0.0.zip" download class="btn-primary" style="font-size: 16px; padding: 16px 36px;">
         ↓ &nbsp;Download v1.0.0 (.zip)
       </a>
-
       <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px 28px; max-width: 480px; text-align: left; margin-top: 8px;">
         <p style="font-size: 12px; font-family: 'DM Mono', monospace; color: var(--muted); margin-bottom: 12px; letter-spacing: 0.06em; text-transform: uppercase;">Install steps</p>
         <ol style="font-size: 13px; color: var(--muted2); line-height: 2; padding-left: 18px; font-family: 'DM Mono', monospace;">
@@ -809,10 +774,26 @@
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <span>© 2026 ContextBridge — Built by Swastik Srivastava</span>
 </footer>
 
+<script>
+  const toggle = document.getElementById('themeToggle');
+  const icon = toggle.querySelector('.theme-icon');
+  const root = document.documentElement;
+
+  // Load saved preference
+  if (localStorage.getItem('theme') === 'light') {
+    root.classList.add('light');
+    icon.textContent = '🌙';
+  }
+
+  toggle.addEventListener('click', () => {
+    const isLight = root.classList.toggle('light');
+    icon.textContent = isLight ? '🌙' : '☀️';
+    localStorage.setItem('theme', isLight ? 'light' : 'dark');
+  });
+</script>
 </body>
 </html>
